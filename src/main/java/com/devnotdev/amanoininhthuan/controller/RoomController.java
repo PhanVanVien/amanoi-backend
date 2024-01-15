@@ -6,6 +6,8 @@ import com.devnotdev.amanoininhthuan.model.Room;
 import com.devnotdev.amanoininhthuan.response.RoomResponse;
 import com.devnotdev.amanoininhthuan.service.RoomService;
 import lombok.RequiredArgsConstructor;
+import org.apache.tomcat.util.codec.binary.Base64;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,6 +18,7 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.sql.Blob;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -26,7 +29,6 @@ import java.util.Optional;
 public class RoomController {
     private final RoomService roomService;
 
-    @CrossOrigin
     @PostMapping("/add/new-room")
     public ResponseEntity<RoomResponse> addNewRoom(@RequestParam("photo") MultipartFile photo,
                                                    @RequestParam("roomType") String roomType,
@@ -36,13 +38,11 @@ public class RoomController {
         return ResponseEntity.ok(roomResponse);
     }
 
-    @CrossOrigin
     @GetMapping("/room/types")
     public List<String> getRoomTypes() {
         return roomService.getAllRoomTypes();
     }
 
-    @CrossOrigin
     @GetMapping("/all-rooms")
     public ResponseEntity<List<RoomResponse>> getAllRooms() throws SQLException {
         List<Room> rooms = roomService.getAllRooms();
@@ -55,6 +55,29 @@ public class RoomController {
             }
         }
         return ResponseEntity.ok(roomResponses);
+    }
+
+    @GetMapping("/available-rooms")
+    public ResponseEntity<List<RoomResponse>> getAvailableRooms(
+            @RequestParam("checkInDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate checkInDate,
+            @RequestParam("checkOutDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)LocalDate checkOutDate,
+            @RequestParam("roomType") String roomType) throws SQLException {
+        List<Room> availableRooms = roomService.getAvailableRooms(checkInDate, checkOutDate, roomType);
+        List<RoomResponse> roomResponses = new ArrayList<>();
+        for (Room room : availableRooms){
+            byte[] photoBytes = roomService.getRoomPhotoById(room.getRoomId());
+            if (photoBytes != null && photoBytes.length > 0){
+                String photoBase64 = Base64.encodeBase64String(photoBytes);
+                RoomResponse roomResponse = getRoomResponse(room);
+                roomResponse.setPhoto(photoBase64);
+                roomResponses.add(roomResponse);
+            }
+        }
+        if(roomResponses.isEmpty()){
+            return ResponseEntity.noContent().build();
+        }else{
+            return ResponseEntity.ok(roomResponses);
+        }
     }
 
     private RoomResponse getRoomResponse(Room room) {
@@ -74,14 +97,12 @@ public class RoomController {
                 photoBytes);
     }
 
-    @CrossOrigin
     @DeleteMapping("/delete/room/{roomId}")
     public ResponseEntity<Void> deleteRoom(@PathVariable Long roomId) {
         roomService.deleteRoomById(roomId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @CrossOrigin
     @PutMapping("/update/{roomId}")
     public ResponseEntity<RoomResponse> updateRoom(@PathVariable Long roomId,
                                                    @RequestParam(required = false) String roomType,
@@ -94,7 +115,6 @@ public class RoomController {
         return ResponseEntity.ok(roomResponse);
     }
 
-    @CrossOrigin
     @GetMapping("/room/{roomId}")
     public ResponseEntity<Optional<RoomResponse>> getRoomById(@PathVariable Long roomId) {
         Optional<Room> theRoom = roomService.getRoomById(roomId);

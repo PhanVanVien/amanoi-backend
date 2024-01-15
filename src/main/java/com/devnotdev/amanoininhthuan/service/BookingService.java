@@ -1,6 +1,7 @@
 package com.devnotdev.amanoininhthuan.service;
 
 import com.devnotdev.amanoininhthuan.exception.InvalidBookingRequestException;
+import com.devnotdev.amanoininhthuan.exception.ResourceNotFoundException;
 import com.devnotdev.amanoininhthuan.model.BookedRoom;
 import com.devnotdev.amanoininhthuan.model.Room;
 import com.devnotdev.amanoininhthuan.repository.BookingRepository;
@@ -22,7 +23,7 @@ public class BookingService implements IBookingService {
 
     @Override
     public BookedRoom findByBookingConfirmationCode(String confirmationCode) {
-        return bookingRepository.findByConfirmationCode(confirmationCode);
+        return bookingRepository.findByConfirmationCode(confirmationCode).orElseThrow(() -> new ResourceNotFoundException("No booking found with booking code: " + confirmationCode));
     }
 
     @Override
