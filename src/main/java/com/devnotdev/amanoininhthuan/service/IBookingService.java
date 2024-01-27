@@ -11,7 +11,7 @@ public interface IBookingService {
 
     void cancelBooking(Long bookingId);
 
-    String saveBooking(Long roomId, BookedRoom bookingRequest);
+    String saveBooking(Long roomId, String email, BookedRoom bookingRequest);
 
-    List<BookedRoom> getBookingsByUserId(String userId);
+//    List<BookedRoom> getBookingsByUserId(Long userId);
 }

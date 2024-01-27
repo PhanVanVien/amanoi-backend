@@ -4,6 +4,7 @@ import com.devnotdev.amanoininhthuan.exception.InvalidBookingRequestException;
 import com.devnotdev.amanoininhthuan.exception.ResourceNotFoundException;
 import com.devnotdev.amanoininhthuan.model.BookedRoom;
 import com.devnotdev.amanoininhthuan.model.Room;
+import com.devnotdev.amanoininhthuan.model.User;
 import com.devnotdev.amanoininhthuan.repository.BookingRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -15,6 +16,7 @@ import java.util.List;
 public class BookingService implements IBookingService {
     private final BookingRepository bookingRepository;
     private final RoomService roomService;
+    private final UserService userService;
 
     @Override
     public List<BookedRoom> getAllBookings() {
@@ -32,14 +34,16 @@ public class BookingService implements IBookingService {
     }
 
     @Override
-    public String saveBooking(Long roomId, BookedRoom bookingRequest) {
+    public String saveBooking(Long roomId, String userId, BookedRoom bookingRequest) {
         if (bookingRequest.getCheckOutDate().isBefore(bookingRequest.getCheckInDate())) {
             throw new InvalidBookingRequestException("Check-in date must come before check-out date");
         }
         Room room = roomService.getRoomById(roomId).get();
+        User user = userService.getUser(userId);
         List<BookedRoom> existingBookings = room.getBookings();
         boolean roomIsAvailable = roomIsAvailable(bookingRequest, existingBookings);
         if (roomIsAvailable) {
+            bookingRequest.setUser(user);
             room.addBooking(bookingRequest);
             bookingRepository.save(bookingRequest);
         } else {
@@ -48,10 +52,10 @@ public class BookingService implements IBookingService {
         return bookingRequest.getConfirmationCode();
     }
 
-    @Override
-    public List<BookedRoom> getBookingsByUserId(String userId) {
-        return bookingRepository.getBookingByUserId(userId);
-    }
+//    @Override
+//    public List<BookedRoom> getBookingsByUserId(Long userId) {
+//        return bookingRepository.findByUserId(userId);
+//    }
 
     private boolean roomIsAvailable(BookedRoom bookingRequest, List<BookedRoom> existingBookings) {
         return existingBookings.stream()
@@ -80,4 +84,6 @@ public class BookingService implements IBookingService {
         return existingBookings.stream().noneMatch(existingBooking ->
                 bookingRequest.getCheckInDate().equals(existingBooking.getCheckInDate()));
     }
+
+
 }

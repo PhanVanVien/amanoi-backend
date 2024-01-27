@@ -11,6 +11,6 @@ import java.util.Optional;
 public interface BookingRepository extends JpaRepository<BookedRoom, Long> {
     Optional<BookedRoom> findByConfirmationCode(String confirmationCode);
 
-    @Query("SELECT b FROM BookedRoom b WHERE b.userId = :userId")
-    List<BookedRoom> getBookingByUserId(String userId);
+//    @Query("SELECT b FROM BookedRoom b WHERE b.userId = :userId")
+//    List<BookedRoom> findByUserId(Long userId);
 }

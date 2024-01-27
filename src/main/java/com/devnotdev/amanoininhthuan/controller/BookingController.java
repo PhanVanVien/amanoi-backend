@@ -65,25 +65,25 @@ public class BookingController {
         bookingService.cancelBooking(bookingId);
     }
 
-    @PostMapping("/room/{roomId}/booking")
-    public ResponseEntity<?> saveBooking(@PathVariable Long roomId, @RequestBody BookedRoom bookingRequest) {
+    @PostMapping("/room/{roomId}/{userId}/booking")
+    public ResponseEntity<?> saveBooking(@PathVariable Long roomId, @PathVariable String userId, @RequestBody BookedRoom bookingRequest) {
         try {
-            String confirmationCode = bookingService.saveBooking(roomId, bookingRequest);
+            String confirmationCode = bookingService.saveBooking(roomId, userId, bookingRequest);
             return ResponseEntity.ok("Room booked successfully, Your booking confirmation code is: " + confirmationCode);
         } catch (InvalidBookingRequestException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
 
-    @CrossOrigin
-    @GetMapping("/user/{userId}/bookings")
-    public ResponseEntity<List<BookingResponse>> getBookingsByUserId(@PathVariable String userId) {
-        List<BookedRoom> bookings = bookingService.getBookingsByUserId(userId);
-        List<BookingResponse> bookingResponses = new ArrayList<>();
-        for (BookedRoom booking : bookings) {
-            BookingResponse bookingResponse = getBookingResponse(booking);
-            bookingResponses.add(bookingResponse);
-        }
-        return ResponseEntity.ok(bookingResponses);
-    }
+//    @CrossOrigin
+//    @GetMapping("/user/{userId}/bookings")
+//    public ResponseEntity<List<BookingResponse>> getBookingsByUserId(@PathVariable Long userId) {
+//        List<BookedRoom> bookings = bookingService.getBookingsByUserId(userId);
+//        List<BookingResponse> bookingResponses = new ArrayList<>();
+//        for (BookedRoom booking : bookings) {
+//            BookingResponse bookingResponse = getBookingResponse(booking);
+//            bookingResponses.add(bookingResponse);
+//        }
+//        return ResponseEntity.ok(bookingResponses);
+//    }
 }
