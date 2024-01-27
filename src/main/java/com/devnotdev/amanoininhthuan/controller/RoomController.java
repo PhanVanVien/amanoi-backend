@@ -3,13 +3,16 @@ package com.devnotdev.amanoininhthuan.controller;
 import com.devnotdev.amanoininhthuan.exception.PhotoRetrievalException;
 import com.devnotdev.amanoininhthuan.exception.ResourceNotFoundException;
 import com.devnotdev.amanoininhthuan.model.Room;
+import com.devnotdev.amanoininhthuan.model.User;
 import com.devnotdev.amanoininhthuan.response.RoomResponse;
 import com.devnotdev.amanoininhthuan.service.RoomService;
+import com.devnotdev.amanoininhthuan.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -28,8 +31,10 @@ import java.util.Optional;
 @RequestMapping("/rooms")
 public class RoomController {
     private final RoomService roomService;
+    private final UserService userService;
 
     @PostMapping("/add/new-room")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<RoomResponse> addNewRoom(@RequestParam("photo") MultipartFile photo,
                                                    @RequestParam("roomType") String roomType,
                                                    @RequestParam("roomPrice") BigDecimal roomPrice) throws SQLException, IOException {
@@ -41,6 +46,11 @@ public class RoomController {
     @GetMapping("/room/types")
     public List<String> getRoomTypes() {
         return roomService.getAllRoomTypes();
+    }
+
+    @GetMapping("/users/{id}")
+    public ResponseEntity<User> getUserByEmail(@PathVariable String id) {
+        return ResponseEntity.ok(userService.getUser(id));
     }
 
     @GetMapping("/all-rooms")
@@ -60,22 +70,22 @@ public class RoomController {
     @GetMapping("/available-rooms")
     public ResponseEntity<List<RoomResponse>> getAvailableRooms(
             @RequestParam("checkInDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate checkInDate,
-            @RequestParam("checkOutDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)LocalDate checkOutDate,
+            @RequestParam("checkOutDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate checkOutDate,
             @RequestParam("roomType") String roomType) throws SQLException {
         List<Room> availableRooms = roomService.getAvailableRooms(checkInDate, checkOutDate, roomType);
         List<RoomResponse> roomResponses = new ArrayList<>();
-        for (Room room : availableRooms){
+        for (Room room : availableRooms) {
             byte[] photoBytes = roomService.getRoomPhotoById(room.getRoomId());
-            if (photoBytes != null && photoBytes.length > 0){
+            if (photoBytes != null && photoBytes.length > 0) {
                 String photoBase64 = Base64.encodeBase64String(photoBytes);
                 RoomResponse roomResponse = getRoomResponse(room);
                 roomResponse.setPhoto(photoBase64);
                 roomResponses.add(roomResponse);
             }
         }
-        if(roomResponses.isEmpty()){
+        if (roomResponses.isEmpty()) {
             return ResponseEntity.noContent().build();
-        }else{
+        } else {
             return ResponseEntity.ok(roomResponses);
         }
     }
@@ -97,13 +107,18 @@ public class RoomController {
                 photoBytes);
     }
 
+    @CrossOrigin
     @DeleteMapping("/delete/room/{roomId}")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<Void> deleteRoom(@PathVariable Long roomId) {
+
         roomService.deleteRoomById(roomId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
+    @CrossOrigin
     @PutMapping("/update/{roomId}")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<RoomResponse> updateRoom(@PathVariable Long roomId,
                                                    @RequestParam(required = false) String roomType,
                                                    @RequestParam(required = false) BigDecimal roomPrice,

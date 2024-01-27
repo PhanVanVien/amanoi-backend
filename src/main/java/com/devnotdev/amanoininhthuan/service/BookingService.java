@@ -48,6 +48,11 @@ public class BookingService implements IBookingService {
         return bookingRequest.getConfirmationCode();
     }
 
+    @Override
+    public List<BookedRoom> getBookingsByUserId(String userId) {
+        return bookingRepository.getBookingByUserId(userId);
+    }
+
     private boolean roomIsAvailable(BookedRoom bookingRequest, List<BookedRoom> existingBookings) {
         return existingBookings.stream()
                 .noneMatch(existingBooking ->

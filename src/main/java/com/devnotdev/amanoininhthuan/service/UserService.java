@@ -18,7 +18,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class UserService implements IUserService {
     private final UserRepository userRepository;
-//    private final PasswordEncoder passwordEncoder;
+    private final PasswordEncoder passwordEncoder;
     private final RoleRepository roleRepository;
 
     @Override
@@ -26,8 +26,8 @@ public class UserService implements IUserService {
         if (userRepository.existsByEmail(user.getEmail())) {
             throw new UserAlreadyExistsException(user.getEmail() + " already exists");
         }
-//        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        Role userRole = roleRepository.findByName("ROLE_USER").get();
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        Role userRole = roleRepository.findByName("ROLE_ADMIN").get();
         user.setRoles(Collections.singletonList(userRole));
         return userRepository.save(user);
     }
@@ -40,10 +40,11 @@ public class UserService implements IUserService {
     @Transactional
     @Override
     public void deleteUser(String email) {
-        User user = getUser(email);
-        if (user != null) {
+        User theUser = getUser(email);
+        if (theUser != null) {
             userRepository.deleteByEmail(email);
         }
+
     }
 
     @Override

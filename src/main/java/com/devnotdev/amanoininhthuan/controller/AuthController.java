@@ -37,7 +37,6 @@ public class AuthController {
         try {
             userService.registerUser(user);
             return ResponseEntity.ok("Registration successful!");
-
         } catch (UserAlreadyExistsException e) {
             return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
         }
@@ -49,8 +48,8 @@ public class AuthController {
                 authenticationManager
                         .authenticate(new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword()));
         SecurityContextHolder.getContext().setAuthentication(authentication);
-        String jwt = jwtUtils.generateJwtTokenForUser(authentication);
         HotelUserDetails userDetails = (HotelUserDetails) authentication.getPrincipal();
+        String jwt = jwtUtils.generateJwtTokenForUser(userDetails);
         List<String> roles = userDetails.getAuthorities()
                 .stream()
                 .map(GrantedAuthority::getAuthority).toList();
