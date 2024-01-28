@@ -52,10 +52,10 @@ public class BookingService implements IBookingService {
         return bookingRequest.getConfirmationCode();
     }
 
-//    @Override
-//    public List<BookedRoom> getBookingsByUserId(Long userId) {
-//        return bookingRepository.findByUserId(userId);
-//    }
+    @Override
+    public List<BookedRoom> getAll(Long userId) {
+        return bookingRepository.findByUserId(userId);
+    }
 
     private boolean roomIsAvailable(BookedRoom bookingRequest, List<BookedRoom> existingBookings) {
         return existingBookings.stream()

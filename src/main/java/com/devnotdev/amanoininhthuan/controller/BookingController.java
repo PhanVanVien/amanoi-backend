@@ -75,15 +75,21 @@ public class BookingController {
         }
     }
 
+    @CrossOrigin
+    @GetMapping("/user/{userId}/bookings")
+    public ResponseEntity<List<BookingResponse>> getBookingsByUserId(@PathVariable Long userId) {
+        List<BookedRoom> bookings = bookingService.getAll(userId);
+        List<BookingResponse> bookingResponses = new ArrayList<>();
+        for (BookedRoom booking : bookings) {
+            BookingResponse bookingResponse = getBookingResponse(booking);
+            bookingResponses.add(bookingResponse);
+        }
+        return ResponseEntity.ok(bookingResponses);
+    }
+
 //    @CrossOrigin
 //    @GetMapping("/user/{userId}/bookings")
-//    public ResponseEntity<List<BookingResponse>> getBookingsByUserId(@PathVariable Long userId) {
-//        List<BookedRoom> bookings = bookingService.getBookingsByUserId(userId);
-//        List<BookingResponse> bookingResponses = new ArrayList<>();
-//        for (BookedRoom booking : bookings) {
-//            BookingResponse bookingResponse = getBookingResponse(booking);
-//            bookingResponses.add(bookingResponse);
-//        }
-//        return ResponseEntity.ok(bookingResponses);
+//    public void getBookingsByUserId(@PathVariable Long userId) {
+//        System.out.println(userId);
 //    }
 }
