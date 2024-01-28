@@ -74,10 +74,9 @@ public class BookingController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
-
-    @CrossOrigin
+    
     @GetMapping("/user/{userId}/bookings")
-    public ResponseEntity<List<BookingResponse>> getBookingsByUserId(@PathVariable Long userId) {
+    public ResponseEntity<List<BookingResponse>> getBookingsByUserId(@PathVariable String userId) {
         List<BookedRoom> bookings = bookingService.getAll(userId);
         List<BookingResponse> bookingResponses = new ArrayList<>();
         for (BookedRoom booking : bookings) {
@@ -86,10 +85,4 @@ public class BookingController {
         }
         return ResponseEntity.ok(bookingResponses);
     }
-
-//    @CrossOrigin
-//    @GetMapping("/user/{userId}/bookings")
-//    public void getBookingsByUserId(@PathVariable Long userId) {
-//        System.out.println(userId);
-//    }
 }

@@ -53,7 +53,7 @@ public class BookingService implements IBookingService {
     }
 
     @Override
-    public List<BookedRoom> getAll(Long userId) {
+    public List<BookedRoom> getAll(String userId) {
         return bookingRepository.findByUserId(userId);
     }
 

@@ -25,7 +25,7 @@ public class BookedRoom {
     private int totalNumOfGuest;
     private String confirmationCode;
     @OneToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "email")
     private User user;
 
     @ManyToOne(fetch = FetchType.LAZY)
