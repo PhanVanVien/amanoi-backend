@@ -1,5 +1,6 @@
 package com.devnotdev.amanoininhthuan.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,6 +8,7 @@ import lombok.NoArgsConstructor;
 
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 
 @Entity
 @Data
@@ -18,6 +20,7 @@ public class User {
     private Long userId;
     private String firstName;
     private String lastName;
+    @Column(unique = true)
     private String email;
     private String password;
 
@@ -26,4 +29,8 @@ public class User {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Collection<Role> roles = new HashSet<>();
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<BookedRoom> bookedRooms;
 }

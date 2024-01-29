@@ -1,4 +1,4 @@
-package com.devnotdev.amanoininhthuan.response;
+package com.devnotdev.amanoininhthuan.DTO;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

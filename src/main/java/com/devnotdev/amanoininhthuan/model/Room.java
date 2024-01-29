@@ -34,7 +34,7 @@ public class Room {
         this.photo = photo;
     }
 
-    public void addBooking(BookedRoom booking) {
+    public BookedRoom addBooking(BookedRoom booking) {
         if (bookings == null) {
             bookings = new ArrayList<>();
         }
@@ -43,5 +43,6 @@ public class Room {
         booking.setConfirmationCode(bookingCode);
         isBooked = true;
         bookings.add(booking);
+        return booking;
     }
 }

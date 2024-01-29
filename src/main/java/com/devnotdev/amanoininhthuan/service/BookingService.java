@@ -44,7 +44,13 @@ public class BookingService implements IBookingService {
         boolean roomIsAvailable = roomIsAvailable(bookingRequest, existingBookings);
         if (roomIsAvailable) {
             bookingRequest.setUser(user);
-            room.addBooking(bookingRequest);
+//            room.addBooking(bookingRequest);
+            user.getBookedRooms().add(room.addBooking(bookingRequest));
+//            System.out.println(user.getBookedRooms());
+            for (BookedRoom bookedRoom : user.getBookedRooms()) {
+                System.out.println(" - Room ID: " + bookedRoom.getBookingId() + ", Room Name: " + bookedRoom.getConfirmationCode());
+                // You can print more details about the room if needed
+            }
             bookingRepository.save(bookingRequest);
         } else {
             throw new InvalidBookingRequestException("Sorry, This room is not available for the selected dates");

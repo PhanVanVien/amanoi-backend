@@ -4,7 +4,7 @@ import com.devnotdev.amanoininhthuan.exception.PhotoRetrievalException;
 import com.devnotdev.amanoininhthuan.exception.ResourceNotFoundException;
 import com.devnotdev.amanoininhthuan.model.Room;
 import com.devnotdev.amanoininhthuan.model.User;
-import com.devnotdev.amanoininhthuan.response.RoomResponse;
+import com.devnotdev.amanoininhthuan.DTO.RoomResponse;
 import com.devnotdev.amanoininhthuan.service.RoomService;
 import com.devnotdev.amanoininhthuan.service.UserService;
 import lombok.RequiredArgsConstructor;

@@ -4,8 +4,8 @@ import com.devnotdev.amanoininhthuan.exception.InvalidBookingRequestException;
 import com.devnotdev.amanoininhthuan.exception.ResourceNotFoundException;
 import com.devnotdev.amanoininhthuan.model.BookedRoom;
 import com.devnotdev.amanoininhthuan.model.Room;
-import com.devnotdev.amanoininhthuan.response.BookingResponse;
-import com.devnotdev.amanoininhthuan.response.RoomResponse;
+import com.devnotdev.amanoininhthuan.DTO.BookingResponse;
+import com.devnotdev.amanoininhthuan.DTO.RoomResponse;
 import com.devnotdev.amanoininhthuan.service.BookingService;
 import com.devnotdev.amanoininhthuan.service.RoomService;
 import lombok.RequiredArgsConstructor;
@@ -74,7 +74,7 @@ public class BookingController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
-    
+
     @GetMapping("/user/{userId}/bookings")
     public ResponseEntity<List<BookingResponse>> getBookingsByUserId(@PathVariable String userId) {
         List<BookedRoom> bookings = bookingService.getAll(userId);

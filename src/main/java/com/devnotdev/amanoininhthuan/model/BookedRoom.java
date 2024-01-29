@@ -24,11 +24,12 @@ public class BookedRoom {
     private int numOfChildren;
     private int totalNumOfGuest;
     private String confirmationCode;
-    @OneToOne
-    @JoinColumn(name = "email")
+
+    @ManyToOne
+    @JoinColumn(name = "user_email", referencedColumnName = "email")
     private User user;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "room_id")
     private Room room;
 
