@@ -1,5 +1,6 @@
 package com.devnotdev.amanoininhthuan.controller;
 
+import com.devnotdev.amanoininhthuan.DTO.RoomListResponse;
 import com.devnotdev.amanoininhthuan.exception.PhotoRetrievalException;
 import com.devnotdev.amanoininhthuan.exception.ResourceNotFoundException;
 import com.devnotdev.amanoininhthuan.model.Room;
@@ -9,6 +10,7 @@ import com.devnotdev.amanoininhthuan.service.RoomService;
 import com.devnotdev.amanoininhthuan.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.apache.tomcat.util.codec.binary.Base64;
+import org.springframework.data.domain.Page;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -65,6 +67,67 @@ public class RoomController {
             }
         }
         return ResponseEntity.ok(roomResponses);
+    }
+
+//    @GetMapping("/paged-rooms")
+//    public ResponseEntity<List<RoomResponse>> getRoomByTypeAndPage(@RequestParam int page, @RequestParam int size) {
+//
+//        List<Room> rooms = roomService.getRoomByTypeAndPage(page, size);
+//        List<RoomResponse> roomResponses = new ArrayList<>();
+//        for (Room room : rooms) {
+//            Blob photoBlob = room.getPhoto();
+//            if (photoBlob != null) {
+//                RoomResponse roomResponse = getRoomResponse(room);
+//                roomResponses.add(roomResponse);
+//            }
+//        }
+//        return ResponseEntity.ok(roomResponses);
+//    }
+
+//    @GetMapping("/paged-rooms")
+//    @PreAuthorize("hasRole('ROLE_ADMIN')")
+//    public ResponseEntity<RoomListResponse> getRoomByTypeAndPage(@RequestParam int page, @RequestParam int size) {
+//        Page<Room> roomPage = roomService.getRoomByTypeAndPage(page, size);
+//
+//        List<RoomResponse> roomResponses = new ArrayList<>();
+//        for (Room room : roomPage.getContent()) {
+//            Blob photoBlob = room.getPhoto();
+//            if (photoBlob != null) {
+//                RoomResponse roomResponse = getRoomResponse(room);
+//                roomResponses.add(roomResponse);
+//            }
+//        }
+//
+//        RoomListResponse roomListResponse = new RoomListResponse(roomPage.getTotalElements(), roomResponses);
+//
+//        return ResponseEntity.ok(roomListResponse);
+//    }
+
+    @GetMapping("/paged-rooms")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    public ResponseEntity<RoomListResponse> getRoomByTypeAndPage(@RequestParam int page, @RequestParam int size, @RequestParam String roomType) {
+        Page<Room> roomPage;
+        List<String> rooms = getRoomTypes();
+        if (rooms.contains(roomType)) {
+            System.out.println("Have : " + roomType);
+            roomPage = roomService.getRoomsByRoomType(page, size, roomType);
+        } else {
+            System.out.println("Don't Have : " + roomType);
+            roomPage = roomService.getRooms(page, size);
+        }
+
+        List<RoomResponse> roomResponses = new ArrayList<>();
+        for (Room room : roomPage.getContent()) {
+            Blob photoBlob = room.getPhoto();
+            if (photoBlob != null) {
+                RoomResponse roomResponse = getRoomResponse(room);
+                roomResponses.add(roomResponse);
+            }
+        }
+
+        RoomListResponse roomListResponse = new RoomListResponse(roomPage.getTotalElements(), roomResponses);
+
+        return ResponseEntity.ok(roomListResponse);
     }
 
     @GetMapping("/available-rooms")

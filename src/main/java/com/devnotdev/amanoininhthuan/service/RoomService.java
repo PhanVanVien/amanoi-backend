@@ -4,6 +4,10 @@ import com.devnotdev.amanoininhthuan.exception.ResourceNotFoundException;
 import com.devnotdev.amanoininhthuan.model.Room;
 import com.devnotdev.amanoininhthuan.repository.RoomRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -83,6 +87,18 @@ public class RoomService implements IRoomService {
     @Override
     public List<Room> getAvailableRooms(LocalDate checkInDate, LocalDate checkOutDate, String roomType) {
         return roomRepository.findAvailableRoomsByDateAndType(checkInDate, checkOutDate, roomType);
+    }
+
+    @Override
+    public Page<Room> getRooms(int page, int size) {
+        Pageable pageRequest = PageRequest.of(page, size);
+        return roomRepository.findAll(pageRequest);
+    }
+
+    @Override
+    public Page<Room> getRoomsByRoomType(int page, int size, String roomType) {
+        Pageable pageRequest = PageRequest.of(page, size);
+        return roomRepository.findByNameWithPage(roomType, pageRequest);
     }
 
 

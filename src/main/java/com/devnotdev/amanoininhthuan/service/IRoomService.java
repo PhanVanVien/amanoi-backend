@@ -1,6 +1,7 @@
 package com.devnotdev.amanoininhthuan.service;
 
 import com.devnotdev.amanoininhthuan.model.Room;
+import org.springframework.data.domain.Page;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -27,4 +28,8 @@ public interface IRoomService {
     Optional<Room> getRoomById(Long id);
 
     List<Room> getAvailableRooms(LocalDate checkInDate, LocalDate checkOutDate, String roomType);
+
+    Page<Room> getRooms(int page, int size);
+
+    Page<Room> getRoomsByRoomType(int page, int size, String roomType);
 }

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/bookings")
@@ -28,11 +29,9 @@ public class BookingController {
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<List<BookingResponse>> getAllBookings() {
         List<BookedRoom> bookings = bookingService.getAllBookings();
-        List<BookingResponse> bookingResponses = new ArrayList<>();
-        for (BookedRoom booking : bookings) {
-            BookingResponse bookingResponse = getBookingResponse(booking);
-            bookingResponses.add(bookingResponse);
-        }
+        List<BookingResponse> bookingResponses = bookings.stream()
+                .map(this::getBookingResponse)
+                .collect(Collectors.toList());
         return ResponseEntity.ok(bookingResponses);
     }
 

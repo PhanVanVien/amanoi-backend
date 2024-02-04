@@ -1,6 +1,8 @@
 package com.devnotdev.amanoininhthuan.repository;
 
 import com.devnotdev.amanoininhthuan.model.Room;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -18,4 +20,7 @@ public interface RoomRepository extends JpaRepository<Room, Long> {
             "  WHERE ((br.checkInDate <= :checkOutDate) AND (br.checkOutDate >= :checkInDate))" +
             ")")
     List<Room> findAvailableRoomsByDateAndType(LocalDate checkInDate, LocalDate checkOutDate, String roomType);
+
+    @Query("SELECT r FROM Room r WHERE r.roomType = :roomType")
+    Page<Room> findByNameWithPage(String roomType, Pageable pageable);
 }

@@ -26,12 +26,12 @@ public class BookedRoom {
     private String confirmationCode;
 
     @ManyToOne
-    @JoinColumn(name = "user_email", referencedColumnName = "email")
-    private User user;
-
-    @ManyToOne
     @JoinColumn(name = "room_id")
     private Room room;
+
+    @ManyToOne
+    @JoinColumn(name = "user_email", referencedColumnName = "email")
+    private User user;
 
     public void calculateNumberOfGuest() {
         this.totalNumOfGuest = this.numOfAdults + this.numOfChildren;
