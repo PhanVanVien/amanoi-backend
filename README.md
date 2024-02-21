@@ -6,7 +6,6 @@ The project utilizes the following technologies:
 
 - Spring Boot
 - Spring Data JPA
-- Hibernate
 - Spring Security
 - MySQL
 - ReactJS
