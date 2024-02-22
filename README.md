@@ -1,7 +1,5 @@
 Description of My Project:
 
-- While learning the Spring framework, I came across a comprehensive tutorial project on booking hotels on YouTube by @dailycodework (his channel: https://www.youtube.com/@dailycodework). I am grateful to him for providing the tutorial. I learned Spring through his guidance.
-
 The project utilizes the following technologies:
 
 - Spring Boot
