@@ -1,4 +1,4 @@
-Description of My Project:
+<h1>Description of My Project</h1>
 
 The project utilizes the following technologies:
 
