@@ -32,7 +32,7 @@ My understanding solidified as I delved into the workflow of Spring Boot.
 - Service: Contains business logic, handles aspects like resource access and response generation.
 - Repository: Executes direct queries to the database.
 By maintaining this workflow, you can easily discern the purpose of each segment of code, allowing you to understand the specific function it serves.
-![image](https://github.com/PhanVanVien/amanoi-backend/assets/84467489/638575c5-0871-4b27-943f-ac3f1135c796)
+<img src="https://github.com/PhanVanVien/amanoi-backend/assets/84467489/638575c5-0871-4b27-943f-ac3f1135c796" width="900"> </img>
 Reference: https://www.javatpoint.com/spring-boot-architecture
 <hr/>
 <h1>JWT</h1>
