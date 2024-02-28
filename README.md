@@ -1,11 +1,17 @@
 <h1>Description of My Project</h1>
-The project utilizes the following technologies:
+Technologies:
 
 - Spring Boot
 - Spring Data JPA
 - Spring Security
 - MySQL
 - ReactJS
+
+Tools:
+
+- Postman
+- MySQL Workbench 8.0
+- IntelliJ
 
 The frontend portion developed with ReactJS is accessible through the following link: https://github.com/PhanVanVien/amanoi-frontend.
 <h1>Database Design</h1>
@@ -19,10 +25,11 @@ Now, let's break down the project into smaller, incremental steps. There are fou
 There are relationships between these four models:
 
 Many-to-Many Relationship:
+
 - One User can have Many Roles, and conversely, One Role can have Many Users.
 
-
 One-to-Many and Many-to-One Relationships:
+
 - One User can have Many BookedRooms, and One BookedRoom can only belong to One User.
 - One Room can have Many BookedRooms, and One BookedRoom can only belong to One Room.
 
@@ -30,9 +37,11 @@ One-to-Many and Many-to-One Relationships:
 
 For beginners, I initially found this project confusing, particularly in terms of why repositories, services, and controllers are necessary. 
 My understanding solidified as I delved into the workflow of Spring Boot.
+
 - Controller: Manages HttpRequests, calls services when needed.
 - Service: Contains business logic, handles aspects like resource access and response generation.
 - Repository: Executes direct queries to the database.
+
 By maintaining this workflow, you can easily discern the purpose of each segment of code, allowing you to understand the specific function it serves.
 
 <img src="https://github.com/PhanVanVien/amanoi-backend/assets/84467489/638575c5-0871-4b27-943f-ac3f1135c796" width="500"> </img>
@@ -40,7 +49,6 @@ By maintaining this workflow, you can easily discern the purpose of each segment
 Reference: https://www.javatpoint.com/spring-boot-architecture
 <hr/>
 <h1>JWT</h1>
-
 <p align="center">
   <img align="center" src="https://github.com/PhanVanVien/amanoi-backend/assets/84467489/05636df4-a380-48f4-87af-f549d28afa76" width="500"> </img>
 </p>
