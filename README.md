@@ -7,6 +7,7 @@ The project utilizes the following technologies:
 - ReactJS
 The frontend portion developed with ReactJS is accessible through the following link: https://github.com/PhanVanVien/amanoi-frontend.
 
+<h1>Design Database</h1>
 Now, let's break down the project into smaller, incremental steps. There are four models: User, Role, BookedRoom, and Room.
 
 - The User model stores information such as name, email, etc.
