@@ -1,7 +1,5 @@
 <h1>Description of My Project</h1>
-
 The project utilizes the following technologies:
-
 - Spring Boot
 - Spring Data JPA
 - Spring Security
@@ -37,3 +35,4 @@ By maintaining this workflow, you can easily discern the purpose of each segment
 ![image](https://github.com/PhanVanVien/amanoi-backend/assets/84467489/638575c5-0871-4b27-943f-ac3f1135c796)
 Reference: https://www.javatpoint.com/spring-boot-architecture
 
+<h1>JWT</h1>
