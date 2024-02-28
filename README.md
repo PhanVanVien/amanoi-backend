@@ -39,7 +39,7 @@ Reference: https://www.javatpoint.com/spring-boot-architecture
 <hr/>
 <h1>JWT</h1>
 
-<img src="https://github.com/PhanVanVien/amanoi-backend/assets/84467489/05636df4-a380-48f4-87af-f549d28afa76" width="500"> </img>
+<img align="center" src="https://github.com/PhanVanVien/amanoi-backend/assets/84467489/05636df4-a380-48f4-87af-f549d28afa76" width="500"> </img>
 
 - JWT consists of 3 parts: the header (algorithm, token type), the payload (data), and the verified signature.
 - Encrypting and decrypting JWT between the client and server helps protect data transmitted over the network and ensures its integrity.
