@@ -1,12 +1,13 @@
 <h1>Description of My Project</h1>
 The project utilizes the following technologies:
+
 - Spring Boot
 - Spring Data JPA
 - Spring Security
 - MySQL
 - ReactJS
-The frontend portion developed with ReactJS is accessible through the following link: https://github.com/PhanVanVien/amanoi-frontend.
 
+The frontend portion developed with ReactJS is accessible through the following link: https://github.com/PhanVanVien/amanoi-frontend.
 <h1>Database Design</h1>
 Now, let's break down the project into smaller, incremental steps. There are four models: User, Role, BookedRoom, and Room.
 
