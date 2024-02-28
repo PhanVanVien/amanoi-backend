@@ -37,6 +37,6 @@ By maintaining this workflow, you can easily discern the purpose of each segment
 
 Reference: https://www.javatpoint.com/spring-boot-architecture
 <hr/>
-<h1>Spring Security & JWT</h1>
+<h1>JWT</h1>
 
 <img src="https://github.com/PhanVanVien/amanoi-backend/assets/84467489/05636df4-a380-48f4-87af-f549d28afa76" width="500"> </img>
