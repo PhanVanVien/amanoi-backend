@@ -47,4 +47,4 @@ Reference: https://www.javatpoint.com/spring-boot-architecture
 - Encrypting and decrypting JWT between the client and server helps protect data transmitted over the network and ensures its integrity.
 - For example: I use my credentials sent to the client side. Then, if the credentials are valid, the client side will encode my information into an encoded JWT. Now, I can use this encoded JWT for authentication and authorization on the server side.
 
-References: https://jwt.io/introduction
+Reference: https://jwt.io/introduction
