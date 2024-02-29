@@ -1,4 +1,4 @@
-![image](https://github.com/PhanVanVien/amanoi-backend/assets/84467489/6dddbe77-6008-4011-b280-3fd56b02a548)<h1>Description of My Project</h1>
+<h1>Description of My Project</h1>
 Technologies:
 
 - Spring Boot
