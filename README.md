@@ -33,7 +33,9 @@ One-to-Many and Many-to-One Relationships:
 - One User can have Many BookedRooms, and One BookedRoom can only belong to One User.
 - One Room can have Many BookedRooms, and One BookedRoom can only belong to One Room.
 
-![image](https://github.com/PhanVanVien/amanoi-backend/assets/84467489/8bbcc24a-bc72-4eff-b761-94fd469a2206)
+<p align="center">
+  <img src="https://github.com/PhanVanVien/amanoi-backend/assets/84467489/7a4808d4-165b-49e7-868a-11e85768c293"></img>
+</p>
 
 For beginners, I initially found this project confusing, particularly in terms of why repositories, services, and controllers are necessary. 
 My understanding solidified as I delved into the workflow of Spring Boot.
@@ -63,5 +65,5 @@ Reference: https://jwt.io/introduction
 <hr/>
 <h1>JWT Workflow</h1>
 <p align="center">
-  <img src="https://github.com/PhanVanVien/amanoi-backend/assets/84467489/c3cafbb1-79fe-4bd1-9882-1976bf27a9d9" width="400"></img>
+  <img src="https://github.com/PhanVanVien/amanoi-backend/assets/84467489/c3cafbb1-79fe-4bd1-9882-1976bf27a9d9" width="500"></img>
 </p>
