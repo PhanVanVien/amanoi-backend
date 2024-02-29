@@ -38,6 +38,10 @@ One-to-Many and Many-to-One Relationships:
 </p>
 <hr/>
 <h1>Spring Boot Flow</h1>
+<p align="center">
+<img src="https://github.com/PhanVanVien/amanoi-backend/assets/84467489/77f36fdd-f97c-4c7a-a813-701b8b3fe04c" width="500"> </img>
+</p>
+
 For beginners, I initially found this project confusing, particularly in terms of why repositories, services, and controllers are necessary. 
 My understanding solidified as I delved into the workflow of Spring Boot.
 
@@ -46,10 +50,6 @@ My understanding solidified as I delved into the workflow of Spring Boot.
 - Repository: Executes direct queries to the database.
 
 By maintaining this workflow, you can easily discern the purpose of each segment of code, allowing you to understand the specific function it serves.
-
-<p align="center">
-<img src="https://github.com/PhanVanVien/amanoi-backend/assets/84467489/77f36fdd-f97c-4c7a-a813-701b8b3fe04c" width="500"> </img>
-</p>
 
 Reference: https://www.javatpoint.com/spring-boot-architecture
 <hr/>
@@ -69,4 +69,14 @@ Reference: https://jwt.io/introduction
   <img src="https://github.com/PhanVanVien/amanoi-backend/assets/84467489/c3cafbb1-79fe-4bd1-9882-1976bf27a9d9" width="450"></img>
 </p>
 
+Basic JWT workflow can following present:
+
+- User sends credentials (username, password) to Authentication Server.
+- Server validates credentials and issues a JWT if valid.
+- User includes JWT in requests to Resource Server.
+- Resource Server decodes JWT and verifies its integrity.
+- Resource Server checks permissions embedded in the JWT.
+- Resource Server grants or denies access to the requested resource based on permissions.
+
 Reference: https://stackoverflow.com/questions/65351531/what-is-the-flow-of-using-jwt-work-on-the-frontend
+<hr/>
