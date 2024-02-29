@@ -1,4 +1,4 @@
-<h1>Description of My Project</h1>
+![image](https://github.com/PhanVanVien/amanoi-backend/assets/84467489/6dddbe77-6008-4011-b280-3fd56b02a548)<h1>Description of My Project</h1>
 Technologies:
 
 - Spring Boot
@@ -60,3 +60,8 @@ Reference: https://www.javatpoint.com/spring-boot-architecture
 - For example: I use my credentials sent to the client side. Then, if the credentials are valid, the client side will encode my information into an encoded JWT. Now, I can use this encoded JWT for authentication and authorization on the server side.
 
 Reference: https://jwt.io/introduction
+<hr/>
+<h1>JWT Workflow</h1>
+<p align="center">
+  <img src="https://github.com/PhanVanVien/amanoi-backend/assets/84467489/c3cafbb1-79fe-4bd1-9882-1976bf27a9d9" width="400"></img>
+</p>
