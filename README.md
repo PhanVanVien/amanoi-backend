@@ -68,3 +68,5 @@ Reference: https://jwt.io/introduction
 <p align="center">
   <img src="https://github.com/PhanVanVien/amanoi-backend/assets/84467489/c3cafbb1-79fe-4bd1-9882-1976bf27a9d9" width="450"></img>
 </p>
+
+Reference: https://stackoverflow.com/questions/65351531/what-is-the-flow-of-using-jwt-work-on-the-frontend
