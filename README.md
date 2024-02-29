@@ -45,7 +45,7 @@ My understanding solidified as I delved into the workflow of Spring Boot.
 By maintaining this workflow, you can easily discern the purpose of each segment of code, allowing you to understand the specific function it serves.
 
 <p align="center">
-<img src="https://github.com/PhanVanVien/amanoi-backend/assets/84467489/638575c5-0871-4b27-943f-ac3f1135c796" width="500"> </img>
+<img src="https://github.com/PhanVanVien/amanoi-backend/assets/84467489/550e914d-6244-4f6b-ab90-8249b799af31" width="500"> </img>
 </p>
 
 Reference: https://www.javatpoint.com/spring-boot-architecture
