@@ -34,7 +34,7 @@ One-to-Many and Many-to-One Relationships:
 - One Room can have Many BookedRooms, and One BookedRoom can only belong to One Room.
 
 <p align="center">
-  <img src="https://github.com/PhanVanVien/amanoi-backend/assets/84467489/7a4808d4-165b-49e7-868a-11e85768c293"></img>
+  <img src="https://github.com/PhanVanVien/amanoi-backend/assets/84467489/7a4808d4-165b-49e7-868a-11e85768c293" width="500"></img>
 </p>
 
 For beginners, I initially found this project confusing, particularly in terms of why repositories, services, and controllers are necessary. 
@@ -47,14 +47,14 @@ My understanding solidified as I delved into the workflow of Spring Boot.
 By maintaining this workflow, you can easily discern the purpose of each segment of code, allowing you to understand the specific function it serves.
 
 <p align="center">
-<img src="https://github.com/PhanVanVien/amanoi-backend/assets/84467489/550e914d-6244-4f6b-ab90-8249b799af31" width="500"> </img>
+<img src="https://static.javatpoint.com/springboot/images/spring-boot-architecture2.png" width="500"> </img>
 </p>
 
 Reference: https://www.javatpoint.com/spring-boot-architecture
 <hr/>
 <h1>JWT</h1>
 <p align="center">
-  <img align="center" src="https://github.com/PhanVanVien/amanoi-backend/assets/84467489/05636df4-a380-48f4-87af-f549d28afa76" width="500"> </img>
+  <img src="https://github.com/PhanVanVien/amanoi-backend/assets/84467489/05636df4-a380-48f4-87af-f549d28afa76" width="500"> </img>
 </p>
 
 - JWT consists of 3 parts: the header (algorithm, token type), the payload (data), and the verified signature.
