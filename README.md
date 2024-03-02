@@ -82,5 +82,5 @@ Reference: https://stackoverflow.com/questions/65351531/what-is-the-flow-of-usin
 <hr/>
 <h1>Architecture</h1>
 <p align="center">
-  <img src="https://www.bezkoder.com/wp-content/uploads/spring-boot-authentication-spring-security-architecture.png"></img>
+  <img src="https://www.bezkoder.com/wp-content/uploads/spring-boot-authentication-spring-security-architecture.png" width="500px"></img>
 </p>
